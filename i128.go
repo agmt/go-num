@@ -11,8 +11,8 @@ const (
 )
 
 type I128 struct {
-	hi uint64
 	lo uint64
+	hi uint64
 }
 
 // I128FromRaw is the complement to I128.Raw(); it creates an I128 from two

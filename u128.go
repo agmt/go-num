@@ -8,7 +8,8 @@ import (
 )
 
 type U128 struct {
-	hi, lo uint64
+	lo uint64
+	hi uint64
 }
 
 // U128FromRaw is the complement to U128.Raw(); it creates an U128 from two
