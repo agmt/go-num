@@ -309,6 +309,17 @@ func (u U128) MustUint64() uint64 {
 	return u.lo
 }
 
+func (u U128) IsNeg() bool {
+	return false
+}
+
+func (u U128) Sign() int {
+	if u == zeroU128 {
+		return 0
+	}
+	return 1
+}
+
 func (u U128) Inc() (v U128) {
 	var carry uint64
 	v.lo, carry = bits.Add64(u.lo, 1, 0)

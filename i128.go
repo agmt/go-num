@@ -379,6 +379,10 @@ func (i I128) MustUint64() uint64 {
 	return i.lo
 }
 
+func (i I128) IsNeg() bool {
+	return (i.hi & signBit) != 0
+}
+
 func (i I128) Sign() int {
 	if i == zeroI128 {
 		return 0
