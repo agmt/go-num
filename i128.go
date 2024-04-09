@@ -522,16 +522,12 @@ func (i I128) AbsU128() U128 {
 // The specific value returned by Cmp is undefined, but it is guaranteed to
 // satisfy the above constraints.
 func (i I128) Cmp(n I128) int {
-	if i.hi == n.hi && i.lo == n.lo {
+	if i == n {
 		return 0
-	} else if i.hi&signBit == n.hi&signBit {
-		if i.hi > n.hi || (i.hi == n.hi && i.lo > n.lo) {
-			return 1
-		}
-	} else if i.hi&signBit == 0 {
-		return 1
+	} else if i.LessThan(n) {
+		return -1
 	}
-	return -1
+	return 1
 }
 
 // Cmp64 compares 'i' to 64-bit int 'n' and returns:
@@ -628,12 +624,10 @@ func (i I128) GreaterOrEqualTo64(n int64) bool {
 }
 
 func (i I128) LessThan(n I128) bool {
-	if i.hi&signBit == n.hi&signBit {
-		return i.hi < n.hi || (i.hi == n.hi && i.lo < n.lo)
-	} else if i.hi&signBit != 0 {
-		return true
-	}
-	return false
+	r := i.Sub(n)
+	SF := r.IsNeg()
+	OF := (i.IsNeg() != n.IsNeg()) && (r.IsNeg() == n.IsNeg())
+	return SF != OF
 }
 
 func (i I128) LessThan64(n int64) bool {

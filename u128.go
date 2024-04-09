@@ -383,20 +383,12 @@ func (u U128) Sub64(n uint64) (v U128) {
 // The specific value returned by Cmp is undefined, but it is guaranteed to
 // satisfy the above constraints.
 func (u U128) Cmp(n U128) int {
-	if u.hi == n.hi {
-		if u.lo > n.lo {
-			return 1
-		} else if u.lo < n.lo {
-			return -1
-		}
-	} else {
-		if u.hi > n.hi {
-			return 1
-		} else if u.hi < n.hi {
-			return -1
-		}
+	if u == n {
+		return 0
+	} else if u.LessThan(n) {
+		return -1
 	}
-	return 0
+	return 1
 }
 
 func (u U128) Cmp64(n uint64) int {
@@ -433,7 +425,8 @@ func (u U128) GreaterOrEqualTo64(n uint64) bool {
 }
 
 func (u U128) LessThan(n U128) bool {
-	return u.hi < n.hi || (u.hi == n.hi && u.lo < n.lo)
+	_, c := u.Sbb(n, 0)
+	return (c != 0)
 }
 
 func (u U128) LessThan64(n uint64) bool {
