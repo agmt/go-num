@@ -558,7 +558,7 @@ func (u U128) Rsh(n uint) (v U128) {
 func (u U128) Mul(n U128) U128 {
 	hi, lo := bits.Mul64(u.lo, n.lo)
 	hi += u.hi*n.lo + u.lo*n.hi
-	return U128{hi, lo}
+	return U128{hi: hi, lo: lo}
 }
 
 func (u U128) Mul64(n uint64) (dest U128) {

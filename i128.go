@@ -671,7 +671,7 @@ func (i I128) LessOrEqualTo64(n int64) bool {
 func (i I128) Mul(n I128) (dest I128) {
 	hi, lo := bits.Mul64(i.lo, n.lo)
 	hi += i.hi*n.lo + i.lo*n.hi
-	return I128{hi, lo}
+	return I128{hi: hi, lo: lo}
 }
 
 func (i I128) Mul64(n int64) I128 {
@@ -682,7 +682,7 @@ func (i I128) Mul64(n int64) I128 {
 	}
 	hi, lo := bits.Mul64(i.lo, nlo)
 	hi += i.hi*nlo + i.lo*nhi
-	return I128{hi, lo}
+	return I128{hi: hi, lo: lo}
 }
 
 // QuoRem returns the quotient q and remainder r for y != 0. If y == 0, a
