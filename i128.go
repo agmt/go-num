@@ -410,6 +410,12 @@ func (i I128) Dec() (v I128) {
 	return v
 }
 
+func (i I128) Adc(n I128, carry uint64) (v I128, carryOut uint64) {
+	v.lo, carry = bits.Add64(i.lo, n.lo, carry)
+	v.hi, carryOut = bits.Add64(i.hi, n.hi, carry)
+	return
+}
+
 func (i I128) Add(n I128) (v I128) {
 	var carry uint64
 	v.lo, carry = bits.Add64(i.lo, n.lo, 0)
@@ -426,6 +432,12 @@ func (i I128) Add64(n int64) (v I128) {
 		v.hi = i.hi + carry
 	}
 	return v
+}
+
+func (i I128) Sbb(n U128, borrow uint64) (v I128, borrowOut uint64) {
+	v.lo, borrow = bits.Sub64(i.lo, n.lo, borrow)
+	v.hi, borrowOut = bits.Sub64(i.hi, n.hi, borrow)
+	return
 }
 
 func (i I128) Sub(n I128) (v I128) {
