@@ -358,7 +358,6 @@ func (u U128) Sub64(n uint64) (v U128) {
 //
 // The specific value returned by Cmp is undefined, but it is guaranteed to
 // satisfy the above constraints.
-//
 func (u U128) Cmp(n U128) int {
 	if u.hi == n.hi {
 		if u.lo > n.lo {
@@ -637,7 +636,6 @@ func (u U128) Quo64(by uint64) (q U128) {
 //	r = x - y*q
 //
 // U128 does not support big.Int.DivMod()-style Euclidean division.
-//
 func (u U128) QuoRem(by U128) (q, r U128) {
 	if by.lo == 0 && by.hi == 0 {
 		panic("u128: division by zero")

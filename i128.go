@@ -469,7 +469,6 @@ func (i I128) Neg() (v I128) {
 //
 // If i == MinI128, overflow occurs such that Abs(i) == MinI128.
 // If this is not desired, use AbsU128.
-//
 func (i I128) Abs() I128 {
 	if i.hi&signBit != 0 {
 		i.hi = ^i.hi
@@ -484,7 +483,6 @@ func (i I128) Abs() I128 {
 // AbsU128 returns the absolute value of i as an unsigned integer. All
 // values of i are representable using this function, but the type is
 // changed.
-//
 func (i I128) AbsU128() U128 {
 	if i == MinI128 {
 		return minI128AsU128
@@ -507,7 +505,6 @@ func (i I128) AbsU128() U128 {
 //
 // The specific value returned by Cmp is undefined, but it is guaranteed to
 // satisfy the above constraints.
-//
 func (i I128) Cmp(n I128) int {
 	if i.hi == n.hi && i.lo == n.lo {
 		return 0
@@ -529,7 +526,6 @@ func (i I128) Cmp(n I128) int {
 //
 // The specific value returned by Cmp is undefined, but it is guaranteed to
 // satisfy the above constraints.
-//
 func (i I128) Cmp64(n int64) int {
 	var nhi uint64
 	var nlo = uint64(n)
@@ -672,7 +668,6 @@ func (i I128) LessOrEqualTo64(n int64) bool {
 // Mul returns the product of two I128s.
 //
 // Overflow should wrap around, as per the Go spec.
-//
 func (i I128) Mul(n I128) (dest I128) {
 	hi, lo := bits.Mul64(i.lo, n.lo)
 	hi += i.hi*n.lo + i.lo*n.hi
@@ -706,7 +701,6 @@ func (i I128) Mul64(n int64) I128 {
 //	The one exception to this rule is that if the dividend x is the most
 //	negative value for the int type of x, the quotient q = x / -1 is equal to x
 //	(and r = 0) due to two's-complement integer overflow.
-//
 func (i I128) QuoRem(by I128) (q, r I128) {
 	qSign, rSign := 1, 1
 	if i.LessThan(zeroI128) {

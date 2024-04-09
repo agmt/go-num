@@ -38,13 +38,12 @@ U128 and I128 can be created from a variety of sources:
 
 U128 and I128 support the following formatting and marshalling interfaces:
 
-	- fmt.Formatter
-	- fmt.Stringer
-	- fmt.Scanner
-	- json.Marshaler
-	- json.Unmarshaler
-	- encoding.TextMarshaler
-	- encoding.TextUnmarshaler
-
+  - fmt.Formatter
+  - fmt.Stringer
+  - fmt.Scanner
+  - json.Marshaler
+  - json.Unmarshaler
+  - encoding.TextMarshaler
+  - encoding.TextUnmarshaler
 */
 package num
